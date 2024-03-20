@@ -1,18 +1,8 @@
 import Dates from './Dates';
 import styled from 'styled-components';
 
-export default function Edit() {
-  const test = [
-    { id: 1, schedule: true, description: 'happy' },
-    { id: 2, schedule: false, description: 'happy' },
-    { id: 3, schedule: true, description: 'happy' },
-    { id: 4, schedule: true, description: 'happy' },
-    { id: 5, schedule: true, description: 'happy' },
-    { id: 6, schedule: true, description: 'happy' },
-    { id: 7, schedule: true, description: 'happy' },
-    { id: 8, schedule: true, description: 'happy' },
-    { id: 9, schedule: true, description: 'happy' },
-  ];
+export default function Edit(props) {
+  const { list } = props;
 
   return (
     <Section>
@@ -25,7 +15,7 @@ export default function Edit() {
           <label>DONE</label>
         </CheckBox>
         <ListBox>
-          {test.map((e) => (
+          {list.map((e) => (
             <Lists key={e.id}>
               <h2>{e.schedule ? 'SCHEDULE' : 'DONE'}</h2>
               <p>{e.description}</p>
@@ -94,6 +84,9 @@ const Lists = styled.div`
   border-radius: 0.2rem;
   background-color: rgb(250 242 242);
   font-size: 1.5rem;
+  > h2 {
+    width: 8rem;
+  }
 `;
 
 // const Current = styled.h2`
