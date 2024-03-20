@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 export default function EditModal(props) {
-  const { handleOpenModal } = props;
+  const { handleOpenModal, list, setList } = props;
   const [input, setInput] = useState('');
 
   function handleInput(e) {
@@ -25,9 +25,8 @@ export default function EditModal(props) {
       description: input,
       schedule: true,
     };
-    console.log('새로 추가한 스케줄: ', newSchedule);
     handleLocalStorage(newSchedule);
-    console.log('로컬', localStorage.getItem('testify'));
+    setList([...list, newSchedule]);
   }
 
   function handleLocalStorage(newSchedule) {
