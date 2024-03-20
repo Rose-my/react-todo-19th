@@ -31,7 +31,7 @@ export default function Edit(props) {
         <ListBox>
           {list.map((data) => (
             <Lists key={data.id}>
-              <CurrentStatus type="button" onClick={() => handleStatus(data.id)}>
+              <CurrentStatus type="button" $schedule={data.schedule} onClick={() => handleStatus(data.id)}>
                 {data.schedule ? 'SCHEDULE' : 'DONE'}
               </CurrentStatus>
               <p>{data.description}</p>
@@ -104,16 +104,8 @@ const Lists = styled.div`
 
 const CurrentStatus = styled.h2`
   width: 8rem;
+  color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
 `;
-
-// const Current = styled.h2`
-//   width: 23rem;
-// `;
-
-// const Detail = styled.div`
-//   display: flex;
-//   align-items: center;
-// `;
 
 const TrashButton = styled.button`
   padding: 0.3rem 1rem;

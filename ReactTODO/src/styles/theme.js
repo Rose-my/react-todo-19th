@@ -3,6 +3,8 @@ const colors = {
   gray: '#555555',
   black: '#000000',
   point: '#DFE4FF',
+  schedule: '#ff0000',
+  done: '#0000ff',
 };
 
 const fonts = {
