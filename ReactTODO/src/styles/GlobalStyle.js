@@ -19,6 +19,9 @@ h1{
   font-weight: bold;
 }
 
+button{
+  cursor: pointer;
+}
 `;
 
 export default GlobalStyle;
