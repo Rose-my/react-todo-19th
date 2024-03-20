@@ -26,6 +26,14 @@ export default function EditModal(props) {
       schedule: true,
     };
     console.log('새로 추가한 스케줄: ', newSchedule);
+    handleLocalStorage(newSchedule);
+    console.log('로컬', localStorage.getItem('testify'));
+  }
+
+  function handleLocalStorage(newSchedule) {
+    const savedList = JSON.parse(localStorage.getItem('testify')) || [];
+    savedList.push(newSchedule);
+    localStorage.setItem('testify', JSON.stringify(savedList));
   }
 
   function closeModal() {
