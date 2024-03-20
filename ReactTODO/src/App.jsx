@@ -1,9 +1,16 @@
-import styled from "styled-components";
-import Edit from "./components/Edit";
-import Current from "./components/Current";
-import EditModal from "./components/EditModal";
+import styled from 'styled-components';
+import Edit from './components/Edit';
+import Current from './components/Current';
+import EditModal from './components/EditModal';
+import { useState } from 'react';
 
 export default function App() {
+  const [open, setOpen] = useState(false);
+
+  function handleOpenModal() {
+    setOpen((open) => !open);
+  }
+
   return (
     <>
       <Header>TODO LIST</Header>
@@ -11,9 +18,9 @@ export default function App() {
       <hr />
       <Edit />
       <Footer>
-        <FooterButton>ADD</FooterButton>
+        <FooterButton onClick={handleOpenModal}>ADD</FooterButton>
       </Footer>
-      <EditModal/>
+      {open && <EditModal handleOpenModal={handleOpenModal} />}
     </>
   );
 }
@@ -39,7 +46,7 @@ const FooterButton = styled.button`
   padding: 0.5rem;
   border-radius: 0.5rem;
   background-color: rgb(33 109 176);
-  font-family: "omyu_pretty";
+  font-family: 'omyu_pretty';
   color: white;
   font-size: 1rem;
 `;
