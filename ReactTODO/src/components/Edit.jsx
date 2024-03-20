@@ -4,6 +4,12 @@ import styled from 'styled-components';
 export default function Edit(props) {
   const { list, setList } = props;
 
+  function handleTrash(id) {
+    const updatedList = list.filter((data) => data.id !== id);
+    setList(updatedList);
+    localStorage.setItem('testify', JSON.stringify(updatedList));
+  }
+
   function handleStatus(id) {
     const updatedList = list.map((data) => {
       if (data.id === id) {
@@ -35,7 +41,9 @@ export default function Edit(props) {
                 {data.schedule ? 'SCHEDULE' : 'DONE'}
               </CurrentStatus>
               <p>{data.description}</p>
-              <TrashButton type="button">TRASH</TrashButton>
+              <TrashButton type="button" onClick={() => handleTrash(data.id)}>
+                TRASH
+              </TrashButton>
             </Lists>
           ))}
         </ListBox>
@@ -105,6 +113,7 @@ const Lists = styled.div`
 const CurrentStatus = styled.h2`
   width: 8rem;
   color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
+  cursor: pointer;
 `;
 
 const TrashButton = styled.button`
