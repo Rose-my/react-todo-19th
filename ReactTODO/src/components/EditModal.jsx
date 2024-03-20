@@ -1,6 +1,37 @@
-import styled from "styled-components";
+import { useState } from 'react';
+import styled from 'styled-components';
 
-export default function EditModal() {
+export default function EditModal(props) {
+  const { handleOpenModal } = props;
+  const [input, setInput] = useState('');
+
+  function handleInput(e) {
+    setInput(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (input.trim() !== '') {
+      handleList(input);
+      closeModal();
+    } else {
+      alert('Please enter your TODO');
+    }
+  }
+
+  function handleList(input) {
+    const newSchedule = {
+      id: Date.now(),
+      description: input,
+      schedule: true,
+    };
+    console.log('새로 추가한 스케줄: ', newSchedule);
+  }
+
+  function closeModal() {
+    setInput('');
+    handleOpenModal();
+  }
 
   return (
     <Background>
@@ -8,17 +39,13 @@ export default function EditModal() {
         <ModalTitle>Things to be done</ModalTitle>
         <ModalForm>
           <label>Description</label>
-          <input
-            type="text"
-            value
-            onChange
-          />
+          <input type="text" value={input} onChange={handleInput} />
         </ModalForm>
         <ModalButton>
-          <SaveButton type="button">
+          <SaveButton type="submit" onClick={handleSubmit}>
             SAVE
           </SaveButton>
-          <CloseButton type="button">
+          <CloseButton type="button" onClick={closeModal}>
             CLOSE
           </CloseButton>
         </ModalButton>
@@ -93,7 +120,7 @@ const SaveButton = styled.button`
   border: 0;
   border-radius: 0.5rem;
   background-color: black;
-  font-family: "omyu_pretty";
+  font-family: 'omyu_pretty';
   color: white;
   font-size: 1.2rem;
 `;
@@ -103,7 +130,7 @@ const CloseButton = styled.button`
   border: 0;
   border-radius: 0.5rem;
   background-color: white;
-  font-family: "omyu_pretty";
+  font-family: 'omyu_pretty';
   color: black;
   font-size: 1.2rem;
 `;
