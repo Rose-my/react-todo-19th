@@ -2,7 +2,21 @@ import Dates from './Dates';
 import styled from 'styled-components';
 
 export default function Edit(props) {
-  const { list } = props;
+  const { list, setList } = props;
+
+  function handleStatus(id) {
+    const updatedList = list.map((data) => {
+      if (data.id === id) {
+        return {
+          ...data,
+          schedule: !data.schedule,
+        };
+      }
+      return data;
+    });
+    setList(updatedList);
+    localStorage.setItem('testify', JSON.stringify(updatedList));
+  }
 
   return (
     <Section>
@@ -15,10 +29,12 @@ export default function Edit(props) {
           <label>DONE</label>
         </CheckBox>
         <ListBox>
-          {list.map((e) => (
-            <Lists key={e.id}>
-              <h2>{e.schedule ? 'SCHEDULE' : 'DONE'}</h2>
-              <p>{e.description}</p>
+          {list.map((data) => (
+            <Lists key={data.id}>
+              <CurrentStatus type="button" onClick={() => handleStatus(data.id)}>
+                {data.schedule ? 'SCHEDULE' : 'DONE'}
+              </CurrentStatus>
+              <p>{data.description}</p>
               <TrashButton type="button">TRASH</TrashButton>
             </Lists>
           ))}
@@ -84,9 +100,10 @@ const Lists = styled.div`
   border-radius: 0.2rem;
   background-color: rgb(250 242 242);
   font-size: 1.5rem;
-  > h2 {
-    width: 8rem;
-  }
+`;
+
+const CurrentStatus = styled.h2`
+  width: 8rem;
 `;
 
 // const Current = styled.h2`
