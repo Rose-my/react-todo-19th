@@ -2,10 +2,16 @@ import styled from 'styled-components';
 import Edit from './components/Edit';
 import Current from './components/Current';
 import EditModal from './components/EditModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function App() {
   const [open, setOpen] = useState(false);
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const initiate = JSON.parse(localStorage.getItem('testify')) || [];
+    setList(initiate);
+  }, []);
 
   function handleOpenModal() {
     setOpen((open) => !open);
@@ -16,11 +22,11 @@ export default function App() {
       <Header>TODO LIST</Header>
       <Current />
       <hr />
-      <Edit />
+      <Edit list={list} />
       <Footer>
         <FooterButton onClick={handleOpenModal}>ADD</FooterButton>
       </Footer>
-      {open && <EditModal handleOpenModal={handleOpenModal} />}
+      {open && <EditModal handleOpenModal={handleOpenModal} list={list} setList={setList} />}
     </>
   );
 }
