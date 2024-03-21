@@ -6,22 +6,21 @@ export default function Current(props) {
   const [countList, setCountList] = useState({ schedule: 0, done: 0 });
 
   useEffect(() => {
+    function handleCount() {
+      let scheduleCount = 0;
+      let doneCount = 0;
+
+      list.forEach((data) => {
+        if (data.schedule) {
+          scheduleCount++;
+        } else {
+          doneCount++;
+        }
+      });
+      setCountList({ schedule: scheduleCount, done: doneCount });
+    }
     handleCount();
   }, [list]);
-
-  function handleCount() {
-    let scheduleCount = 0;
-    let doneCount = 0;
-
-    list.forEach((data) => {
-      if (data.schedule) {
-        scheduleCount++;
-      } else {
-        doneCount++;
-      }
-    });
-    setCountList({ schedule: scheduleCount, done: doneCount });
-  }
 
   return (
     <Section>
