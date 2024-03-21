@@ -71,7 +71,7 @@ const Background = styled.section`
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(0 0 0 / 70%);
+  background-color: ${({ theme }) => theme.colors.modalbg};
 `;
 
 const ModalBox = styled.section`
@@ -84,7 +84,7 @@ const ModalBox = styled.section`
   height: 30%;
   padding: 0 0 1rem;
   border-radius: 1rem 1rem 0 0;
-  background-color: rgb(169 208 194);
+  background-color: ${({ theme }) => theme.colors.mainbg};
 `;
 
 const ModalTitle = styled.h2`
@@ -102,7 +102,7 @@ const ModalForm = styled.form`
 
   > label {
     border: 0;
-    color: black;
+    color: ${({ theme }) => theme.colors.black};
     font-size: 1.2rem;
   }
 
@@ -126,7 +126,7 @@ const SaveButton = styled.button`
   padding: 0.5rem;
   border: 0;
   border-radius: 0.5rem;
-  background-color: black;
+  background-color: ${({ theme }) => theme.colors.black};
   font-family: 'omyu_pretty';
   color: white;
   font-size: 1.2rem;
@@ -138,6 +138,6 @@ const CloseButton = styled.button`
   border-radius: 0.5rem;
   background-color: white;
   font-family: 'omyu_pretty';
-  color: black;
+  color: ${({ theme }) => theme.colors.black};
   font-size: 1.2rem;
 `;

@@ -45,7 +45,7 @@ const Section = styled.section`
   padding: 1rem;
   border: 3px solid black;
   border-radius: 0.7rem;
-  background-color: rgb(134 196 173);
+  background-color: ${({ theme }) => theme.colors.mainbg};
 `;
 
 const Header = styled.h2`
@@ -61,8 +61,8 @@ const DetailBox = styled.div`
 `;
 
 const Text = styled.p`
-  display: inline-block;
   border-radius: 2rem;
+  display: inline-block;
   font-size: 1.2rem;
   font-weight: 600;
   text-align: center;

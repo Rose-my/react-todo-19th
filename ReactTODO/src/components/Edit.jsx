@@ -99,7 +99,7 @@ const CheckBox = styled.form`
 
   label {
     padding: 0.3rem 1rem;
-    border: 1px solid rgb(33 109 176);
+    border: 1px solid ${({ theme }) => theme.colors.commonbg};
     border-radius: 0.5rem;
     color: ${({ theme, checked }) => (checked ? theme.colors.commonbg : theme.colors.white)};
     background-color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.commonbg)};
@@ -137,9 +137,9 @@ const CurrentStatus = styled.h2`
 
 const TrashButton = styled.button`
   padding: 0.3rem 1rem;
-  border: 1px solid rgb(33 109 176);
+  border: 1px solid ${({ theme }) => theme.colors.commonbg};
   border-radius: 0.5rem;
   background-color: white;
-  color: rgb(33 109 176);
+  color: ${({ theme }) => theme.colors.commonbg};
   ${({ theme }) => theme.fonts.eng};
 `;
