@@ -1,8 +1,12 @@
 import Dates from './Dates';
 import styled from 'styled-components';
 
+import { useState } from 'react';
+
 export default function Edit(props) {
   const { list, setList } = props;
+  const [showSchedule, setShowSchedule] = useState(true);
+  const [showDone, setShowDone] = useState(true);
 
   function handleTrash(id) {
     const updatedList = list.filter((data) => data.id !== id);
@@ -24,28 +28,46 @@ export default function Edit(props) {
     localStorage.setItem('testify', JSON.stringify(updatedList));
   }
 
+  function handleFilter(e) {
+    const { name, checked } = e.target;
+    if (name === 'schedule') {
+      setShowSchedule(checked);
+    } else if (name === 'done') {
+      setShowDone(checked);
+    }
+  }
+
   return (
     <Section>
       <Dates />
       <ListContainer>
         <CheckBox>
-          <input name="schedule" type="checkbox" id="schedule" />
-          <label>SCHEDULE</label>
-          <input name="done" type="checkbox" id="done" />
-          <label>DONE</label>
+          <label>
+            <input name="schedule" type="checkbox" id="schedule" checked={showSchedule} onChange={handleFilter} />
+            SCHEDULE
+          </label>
+          <label>
+            <input name="done" type="checkbox" id="done" checked={showDone} onChange={handleFilter} />
+            DONE
+          </label>
         </CheckBox>
         <ListBox>
-          {list.map((data) => (
-            <Lists key={data.id}>
-              <CurrentStatus type="button" $schedule={data.schedule} onClick={() => handleStatus(data.id)}>
-                {data.schedule ? 'SCHEDULE' : 'DONE'}
-              </CurrentStatus>
-              <p>{data.description}</p>
-              <TrashButton type="button" onClick={() => handleTrash(data.id)}>
-                TRASH
-              </TrashButton>
-            </Lists>
-          ))}
+          {list.map((data) => {
+            if ((showSchedule && data.schedule) || (showDone && !data.schedule)) {
+              return (
+                <Lists key={data.id}>
+                  <CurrentStatus type="button" $schedule={data.schedule} onClick={() => handleStatus(data.id)}>
+                    {data.schedule ? 'SCHEDULE' : 'DONE'}
+                  </CurrentStatus>
+                  <p>{data.description}</p>
+                  <TrashButton type="button" onClick={() => handleTrash(data.id)}>
+                    TRASH
+                  </TrashButton>
+                </Lists>
+              );
+            }
+            return null;
+          })}
         </ListBox>
       </ListContainer>
     </Section>
@@ -61,7 +83,7 @@ const ListContainer = styled.section`
   width: 100%;
 `;
 
-const CheckBox = styled.section`
+const CheckBox = styled.form`
   display: flex;
   gap: 0.5rem;
   justify-content: end;
@@ -71,21 +93,18 @@ const CheckBox = styled.section`
   background-color: white;
   font-weight: 400;
 
-  > input {
+  input {
     display: none;
   }
 
-  > label {
+  label {
     padding: 0.3rem 1rem;
     border: 1px solid rgb(33 109 176);
     border-radius: 0.5rem;
-    background-color: white;
-    color: rgb(33 109 176);
+    color: ${({ theme, checked }) => (checked ? theme.colors.commonbg : theme.colors.white)};
+    background-color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.commonbg)};
+    cursor: pointer;
   }
-  /* > input:checked + label {
-    background-color: rgb(33 109 176);
-    color: white;
-  } */
 `;
 
 const ListBox = styled.section`
