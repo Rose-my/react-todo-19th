@@ -22,6 +22,9 @@ h1{
 button{
   cursor: pointer;
   ${({ theme }) => theme.fonts.eng};
+  &:hover {
+      border: 0.2rem solid ${({ theme }) => theme.colors.black};
+    }
 }
 `;
 

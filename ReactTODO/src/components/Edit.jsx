@@ -101,6 +101,9 @@ const Label = styled.label`
   color: ${({ theme, $checked }) => ($checked ? theme.colors.white : theme.colors.commonbg)};
   background-color: ${({ theme, $checked }) => ($checked ? theme.colors.commonbg : theme.colors.white)};
   cursor: pointer;
+  &:hover {
+    border: 0.2rem solid ${({ theme }) => theme.colors.black};
+  }
 `;
 
 const Input = styled.input`
