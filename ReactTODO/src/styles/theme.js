@@ -11,8 +11,7 @@ const colors = {
 };
 
 const fonts = {
-  eng: "font-family: 'Walter Turncoat', cursive;",
-  kor: "font-family: 'Walter Turncoat', cursive;",
+  eng: "font-family: 'Gaegu', sans-serif;",
 };
 
 const theme = {

@@ -21,6 +21,7 @@ h1{
 
 button{
   cursor: pointer;
+  ${({ theme }) => theme.fonts.eng};
 }
 `;
 

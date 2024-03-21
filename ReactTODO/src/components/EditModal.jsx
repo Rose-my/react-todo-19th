@@ -127,7 +127,6 @@ const SaveButton = styled.button`
   border: 0;
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.colors.black};
-  font-family: 'omyu_pretty';
   color: white;
   font-size: 1.2rem;
 `;
@@ -137,7 +136,6 @@ const CloseButton = styled.button`
   border: 0;
   border-radius: 0.5rem;
   background-color: white;
-  font-family: 'omyu_pretty';
   color: ${({ theme }) => theme.colors.black};
   font-size: 1.2rem;
 `;
