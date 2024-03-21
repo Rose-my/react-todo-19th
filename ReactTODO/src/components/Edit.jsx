@@ -5,8 +5,8 @@ import { useState } from 'react';
 
 export default function Edit(props) {
   const { list, setList } = props;
-  const [showSchedule, setShowSchedule] = useState(true);
-  const [showDone, setShowDone] = useState(true);
+  const [scheduleChecked, setScheduleChecked] = useState(true);
+  const [doneChecked, setDoneChecked] = useState(true);
 
   function handleTrash(id) {
     const updatedList = list.filter((data) => data.id !== id);
@@ -31,9 +31,9 @@ export default function Edit(props) {
   function handleFilter(e) {
     const { name, checked } = e.target;
     if (name === 'schedule') {
-      setShowSchedule(checked);
+      setScheduleChecked(checked);
     } else if (name === 'done') {
-      setShowDone(checked);
+      setDoneChecked(checked);
     }
   }
 
@@ -42,18 +42,18 @@ export default function Edit(props) {
       <Dates />
       <ListContainer>
         <CheckBox>
-          <Label $checked={showSchedule}>
-            <Input name="schedule" type="checkbox" onChange={handleFilter} />
+          <Label $checked={scheduleChecked}>
+            <Input name="schedule" type="checkbox" checked={scheduleChecked} onChange={handleFilter} />
             SCHEDULE
           </Label>
-          <Label $checked={showDone}>
-            <Input name="done" type="checkbox" onChange={handleFilter} />
+          <Label $checked={doneChecked}>
+            <Input name="done" type="checkbox" checked={doneChecked} onChange={handleFilter} />
             DONE
           </Label>
         </CheckBox>
         <ListBox>
           {list.map((data) => {
-            if ((showSchedule && data.schedule) || (showDone && !data.schedule)) {
+            if ((scheduleChecked && data.schedule) || (doneChecked && !data.schedule)) {
               return (
                 <Lists key={data.id}>
                   <CurrentStatus type="button" $schedule={data.schedule} onClick={() => handleStatus(data.id)}>
