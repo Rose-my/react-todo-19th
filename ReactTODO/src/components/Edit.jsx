@@ -42,12 +42,12 @@ export default function Edit(props) {
       <Dates />
       <ListContainer>
         <CheckBox>
-          <Label>
-            <Input name="schedule" type="checkbox" id="schedule" checked={showSchedule} onChange={handleFilter} />
+          <Label $checked={showSchedule}>
+            <Input name="schedule" type="checkbox" onChange={handleFilter} />
             SCHEDULE
           </Label>
-          <Label>
-            <Input name="done" type="checkbox" id="done" checked={showDone} onChange={handleFilter} />
+          <Label $checked={showDone}>
+            <Input name="done" type="checkbox" onChange={handleFilter} />
             DONE
           </Label>
         </CheckBox>
@@ -98,8 +98,8 @@ const Label = styled.label`
   padding: 0.3rem 1rem;
   border: 1px solid ${({ theme }) => theme.colors.commonbg};
   border-radius: 0.5rem;
-  color: ${({ theme, checked }) => (checked ? theme.colors.commonbg : theme.colors.white)};
-  background-color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.commonbg)};
+  color: ${({ theme, $checked }) => ($checked ? theme.colors.white : theme.colors.commonbg)};
+  background-color: ${({ theme, $checked }) => ($checked ? theme.colors.commonbg : theme.colors.white)};
   cursor: pointer;
 `;
 
