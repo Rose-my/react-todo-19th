@@ -143,7 +143,7 @@ const Lists = styled.div`
 `;
 
 const CurrentStatus = styled.h2`
-  width: 8rem;
+  width: 5rem;
   color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
   cursor: pointer;
 `;
