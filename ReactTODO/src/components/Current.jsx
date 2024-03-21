@@ -1,14 +1,28 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 
-export default function Current() {
+export default function Current(props) {
+  const { list } = props;
+  const [countList, setCountList] = useState([]);
+
+  function handleCount() {
+    list.map((data) => {
+      setCountList({ schedule: count number of data.schedule, done: count number of data.done });
+    });
+  }
+
+  useEffect(() => {
+    handleCount();
+  }, []);
+
   return (
     <Section>
       <Header>Current</Header>
       <DetailBox>
         <Text>SCHEDULE</Text>
-        <span>10</span>
+        <span>{countList.schedule}</span>
         <Text>DONE</Text>
-        <span>10</span>
+        <span>{countList.done}</span>
       </DetailBox>
     </Section>
   );
