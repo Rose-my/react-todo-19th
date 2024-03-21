@@ -85,8 +85,8 @@ const ListContainer = styled.section`
 
 const CheckBox = styled.form`
   display: flex;
-  gap: 0.5rem;
   justify-content: end;
+  gap: 0.5rem;
   margin-bottom: 1rem;
   padding: 0 3.2rem;
   border-bottom: none;

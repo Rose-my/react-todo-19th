@@ -39,8 +39,8 @@ export default function Current(props) {
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   align-items: center;
+  gap: 1rem;
   margin: 1rem 3rem;
   padding: 1rem;
   border: 3px solid black;
@@ -55,15 +55,15 @@ const Header = styled.h2`
 
 const DetailBox = styled.div`
   display: flex;
-  gap: 0.7rem;
   align-items: center;
+  gap: 0.7rem;
   margin: 0.7rem;
   font-size: 1.4rem;
 `;
 
 const Text = styled.p`
-  border-radius: 2rem;
   display: inline-block;
+  border-radius: 2rem;
   font-weight: 600;
   text-align: center;
   color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};

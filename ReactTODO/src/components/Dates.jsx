@@ -12,8 +12,8 @@ export default function Dates() {
 
 const DateBox = styled.nav`
   display: flex;
-  gap: 2rem;
   justify-content: center;
+  gap: 2rem;
   margin-top: 1rem;
   font-size: 1.5rem;
 `;
