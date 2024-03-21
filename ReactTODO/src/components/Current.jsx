@@ -3,26 +3,34 @@ import { useEffect, useState } from 'react';
 
 export default function Current(props) {
   const { list } = props;
-  const [countList, setCountList] = useState([]);
-
-  function handleCount() {
-    list.map((data) => {
-      setCountList({ schedule: count number of data.schedule, done: count number of data.done });
-    });
-  }
+  const [countList, setCountList] = useState({ schedule: 0, done: 0 });
 
   useEffect(() => {
     handleCount();
-  }, []);
+  }, [list]);
+
+  function handleCount() {
+    let scheduleCount = 0;
+    let doneCount = 0;
+
+    list.forEach((data) => {
+      if (data.schedule) {
+        scheduleCount++;
+      } else {
+        doneCount++;
+      }
+    });
+    setCountList({ schedule: scheduleCount, done: doneCount });
+  }
 
   return (
     <Section>
       <Header>Current</Header>
       <DetailBox>
-        <Text>SCHEDULE</Text>
-        <span>{countList.schedule}</span>
-        <Text>DONE</Text>
-        <span>{countList.done}</span>
+        <Text $schedule={true}>SCHEDULE</Text>
+        <Count $schedule={true}>{countList.schedule}</Count>
+        <Text $schedule={false}>DONE</Text>
+        <Count $schedule={false}>{countList.done}</Count>
       </DetailBox>
     </Section>
   );
@@ -52,10 +60,15 @@ const DetailBox = styled.div`
   margin: 0.7rem;
 `;
 
-const Text = styled.span`
+const Text = styled.p`
   display: inline-block;
   border-radius: 2rem;
   font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
+  color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
+`;
+
+const Count = styled.span`
+  color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
 `;
