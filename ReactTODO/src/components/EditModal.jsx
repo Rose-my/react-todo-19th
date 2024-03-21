@@ -44,9 +44,9 @@ export default function EditModal(props) {
     <Background>
       <ModalBox>
         <ModalTitle>Things to be done</ModalTitle>
-        <ModalForm>
+        <ModalForm onSubmit={handleSubmit}>
           <Text>Description</Text>
-          <Input type="text" value={input} onChange={handleInput} autoFocus="autofocus" />
+          <Input type="text" value={input} onChange={handleInput} autoFocus />
         </ModalForm>
         <ModalButton>
           <SaveButton type="submit" onClick={handleSubmit}>
