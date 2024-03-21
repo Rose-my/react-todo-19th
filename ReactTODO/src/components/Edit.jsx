@@ -59,7 +59,7 @@ export default function Edit(props) {
                   <CurrentStatus type="button" $schedule={data.schedule} onClick={() => handleStatus(data.id)}>
                     {data.schedule ? 'SCHEDULE' : 'DONE'}
                   </CurrentStatus>
-                  <p>{data.description}</p>
+                  <Description>{data.description}</Description>
                   <TrashButton type="button" onClick={() => handleTrash(data.id)}>
                     TRASH
                   </TrashButton>
@@ -146,6 +146,10 @@ const CurrentStatus = styled.h2`
   width: 5rem;
   color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
   cursor: pointer;
+`;
+
+const Description = styled.p`
+  font-size: 1.5rem;
 `;
 
 const TrashButton = styled.button`
