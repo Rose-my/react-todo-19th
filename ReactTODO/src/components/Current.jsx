@@ -49,7 +49,7 @@ const Section = styled.section`
 `;
 
 const Header = styled.h2`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
 `;
 
@@ -58,12 +58,12 @@ const DetailBox = styled.div`
   gap: 0.7rem;
   align-items: center;
   margin: 0.7rem;
+  font-size: 1.4rem;
 `;
 
 const Text = styled.p`
   border-radius: 2rem;
   display: inline-block;
-  font-size: 1.2rem;
   font-weight: 600;
   text-align: center;
   color: ${({ theme, $schedule }) => ($schedule ? theme.colors.schedule : theme.colors.done)};
