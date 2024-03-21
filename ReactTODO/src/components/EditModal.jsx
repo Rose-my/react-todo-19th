@@ -45,8 +45,8 @@ export default function EditModal(props) {
       <ModalBox>
         <ModalTitle>Things to be done</ModalTitle>
         <ModalForm>
-          <label>Description</label>
-          <input type="text" value={input} onChange={handleInput} />
+          <Text>Description</Text>
+          <Input type="text" value={input} onChange={handleInput} autoFocus="autofocus" />
         </ModalForm>
         <ModalButton>
           <SaveButton type="submit" onClick={handleSubmit}>
@@ -99,21 +99,21 @@ const ModalForm = styled.form`
   width: 100%;
   padding: 1rem;
   gap: 1rem;
+`;
 
-  > label {
-    border: 0;
-    color: ${({ theme }) => theme.colors.black};
-    font-size: 1.2rem;
-  }
+const Text = styled.label`
+  border: 0;
+  color: ${({ theme }) => theme.colors.black};
+  font-size: 1.2rem;
+`;
 
-  > input {
-    display: block;
-    align-items: center;
-    width: 100%;
-    height: 2rem;
-    border: 3px solid black;
-    border-radius: 0.2rem;
-  }
+const Input = styled.input`
+  display: block;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  border: 3px solid black;
+  border-radius: 0.2rem;
 `;
 
 const ModalButton = styled.div`
