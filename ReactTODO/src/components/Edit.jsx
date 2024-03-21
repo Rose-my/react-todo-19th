@@ -42,14 +42,14 @@ export default function Edit(props) {
       <Dates />
       <ListContainer>
         <CheckBox>
-          <label>
-            <input name="schedule" type="checkbox" id="schedule" checked={showSchedule} onChange={handleFilter} />
+          <Label>
+            <Input name="schedule" type="checkbox" id="schedule" checked={showSchedule} onChange={handleFilter} />
             SCHEDULE
-          </label>
-          <label>
-            <input name="done" type="checkbox" id="done" checked={showDone} onChange={handleFilter} />
+          </Label>
+          <Label>
+            <Input name="done" type="checkbox" id="done" checked={showDone} onChange={handleFilter} />
             DONE
-          </label>
+          </Label>
         </CheckBox>
         <ListBox>
           {list.map((data) => {
@@ -92,19 +92,19 @@ const CheckBox = styled.form`
   border-bottom: none;
   background-color: white;
   font-weight: 400;
+`;
 
-  input {
-    display: none;
-  }
+const Label = styled.label`
+  padding: 0.3rem 1rem;
+  border: 1px solid ${({ theme }) => theme.colors.commonbg};
+  border-radius: 0.5rem;
+  color: ${({ theme, checked }) => (checked ? theme.colors.commonbg : theme.colors.white)};
+  background-color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.commonbg)};
+  cursor: pointer;
+`;
 
-  label {
-    padding: 0.3rem 1rem;
-    border: 1px solid ${({ theme }) => theme.colors.commonbg};
-    border-radius: 0.5rem;
-    color: ${({ theme, checked }) => (checked ? theme.colors.commonbg : theme.colors.white)};
-    background-color: ${({ theme, checked }) => (checked ? theme.colors.white : theme.colors.commonbg)};
-    cursor: pointer;
-  }
+const Input = styled.input`
+  display: none;
 `;
 
 const ListBox = styled.section`
@@ -116,6 +116,19 @@ const ListBox = styled.section`
   margin-bottom: 1rem;
   height: 45vh;
   padding: 0 3.2rem;
+
+  ::-webkit-scrollbar {
+    width: 1rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 `;
 
 const Lists = styled.div`
